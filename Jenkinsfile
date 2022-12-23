@@ -1,6 +1,6 @@
 node{
     stage("Code checkout"){
-        git url: "https://github.com/bhuvi-12/railsproject.git"
+        git branch: "main", url: "https://github.com/bhuvi-12/railsproject.git"
     }
     stage("Build the project to docker image"){
         echo("Building the project")
