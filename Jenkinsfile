@@ -15,4 +15,7 @@ node{
             dockerImage.push()
         }
     }
+    stage("Kubernetes Deployment"){
+        sh "kubectl apply -f deployment.yaml -n railsapp"
+    }
 }
