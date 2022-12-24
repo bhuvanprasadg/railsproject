@@ -4,6 +4,9 @@ node{
     def AWS_REGION = "ap-south-1"
     def AWS_JENKINS_CREDENTIALS = "aws-ecr-credentials"
     def AWS_ECR_IMAGE = "railsapp"
+    def AWS_EKS_CLUSTER_NAME = "railsapp"
+    def EKS_NAMESPACE = "railsapp"
+    def DEPLOYMENT_FILE = "deployment.yaml"
     
     stage("Code checkout"){
         git branch: "main", url: "${PROJECT_GITHUB_URL}"
@@ -18,8 +21,8 @@ node{
     }
     stage("Kubernetes Deployment"){
         withAWS(credentials: "${AWS_JENKINS_CREDENTIALS}", region: "${AWS_REGION}") {
-            sh "aws eks update-kubeconfig --region ${AWS_REGION} --name railsapp"
-            sh "kubectl apply -f deployment.yaml -n railsapp"
+            sh "aws eks update-kubeconfig --region ${AWS_REGION} --name ${AWS_EKS_CLUSTER_NAME}"
+            sh "kubectl apply -f ${DEPLOYMENT_FILE} -n ${EKS_NAMESPACE}"
         }
     }
 }
