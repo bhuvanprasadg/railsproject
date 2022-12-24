@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: railspagecontainer
-        image: bhuvanprasad/rails-default-page:latest
+        image: 088578890509.dkr.ecr.ap-south-1.amazonaws.com/railsapp:latest
         ports:
         - containerPort: 3000
