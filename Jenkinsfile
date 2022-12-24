@@ -17,7 +17,7 @@ node{
         }
     }
     stage("Kubernetes Deployment"){
-        withAWS(credentails: ${AWS_JENKINS_CREDENTIALS} region: ${AWS_REGION}) {
+        withAWS(credentails: ${AWS_JENKINS_CREDENTIALS}, region: ${AWS_REGION}) {
             sh "aws eks update-kubeconfig --region ${AWS_REGION} --name railsapp"
             sh "kubectl apply -f deployment.yaml -n railsapp"
         }
