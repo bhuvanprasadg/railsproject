@@ -11,6 +11,6 @@ node{
         }
     }
     stage("Kubernetes deployment"){
-        sh 'kubectl apply -f manifest.yaml -n rails'
+        sh 'kubectl apply -f deployment.yaml -n rails'
     }
 }
