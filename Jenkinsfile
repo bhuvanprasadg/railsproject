@@ -1,5 +1,6 @@
 node{
-    def PROJECT_GITHUB_URL = "https://github.com/bhuvi-12/railsproject.git"
+    def GITHUB_PROJECT_URL = "https://github.com/bhuvi-12/railsproject.git"
+    def GITHUB_CREDENTIALS = "git-credentials-token"
     def AWS_ACCOUNT_ID = "088578890509"
     def AWS_REGION = "ap-south-1"
     def AWS_JENKINS_CREDENTIALS_ID = "aws-ecr-credentials"
@@ -9,7 +10,7 @@ node{
     def DEPLOYMENT_FILE = "deployment.yaml"
     
     stage("Code checkout"){
-        git branch: "main", url: "${PROJECT_GITHUB_URL}", credentialsId: 'git-credentials-token'
+        git branch: "main", url: "${GITHUB_PROJECT_URL}", credentialsId: "${GITHUB_CREDENTIALS}"
     }
     stage("Build the project to docker image & Push to ECR"){
         docker.withRegistry(
