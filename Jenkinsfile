@@ -5,9 +5,9 @@ node{
     stage("Build the project to docker image"){
         docker.withRegistry(
             'https://088578890509.dkr.ecr.ap-south-1.amazonaws.com',
-            'ecr:global:aws-ecr-credentials') {
-            def dockerImage = docker.build('railsapp')
-            dockerImage.push('latest')
+            'ecr:ap-south-1:aws-ecr-credentials') {
+            def dockerImage = docker.build('railsapp:latest')
+            dockerImage.push()
         }
     }
 }
