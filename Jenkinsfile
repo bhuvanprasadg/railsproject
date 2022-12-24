@@ -17,6 +17,7 @@ node{
         }
     }
     stage("Kubernetes Deployment"){
+        sh "aws eks update-kubeconfig --region ${AWS_REGION} --name railsapp"
         sh "kubectl apply -f deployment.yaml -n railsapp"
     }
 }
