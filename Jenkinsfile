@@ -9,7 +9,7 @@ node{
     def DEPLOYMENT_FILE = "deployment.yaml"
     
     stage("Code checkout"){
-        git branch: "main", url: "${PROJECT_GITHUB_URL}"
+        git branch: "main", url: "${PROJECT_GITHUB_URL}", credentialId: 'git-credentials-token'
     }
     stage("Build the project to docker image & Push to ECR"){
         docker.withRegistry(
