@@ -10,8 +10,8 @@ node{
     def EKS_DEPLOYMENT_FILE = "deployment.yaml"
     def EKS_DEPLOYMENT_NAME = "railswelcomepage"
     def RUNNING_CONTAINER_NAME = "railspagecontainer"
-    def buildNumber = currentBuild.number
-    def imageVersion = "v.${buildNumber}"
+    def BUILD_NUMBER = currentBuild.number
+    def IMAGE_VERSION = "v.${BUILD_NUMBER}"
     
     stage("Code checkout"){
         git branch: "main", url: "${GITHUB_PROJECT_URL}", credentialsId: "${GITHUB_CREDENTIALS}"
@@ -20,7 +20,7 @@ node{
         docker.withRegistry(
             "https://${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com",
             "ecr:${AWS_REGION}:${AWS_JENKINS_CREDENTIALS_ID}") {
-            def dockerImage = docker.build("${AWS_ECR_IMAGE}:${imageVersion}")
+            def dockerImage = docker.build("${AWS_ECR_IMAGE}:${IMAGE_VERSION}")
             dockerImage.push()
         }
     }
@@ -28,7 +28,7 @@ node{
         withAWS(credentials: "${AWS_JENKINS_CREDENTIALS_ID}", region: "${AWS_REGION}") {
             sh "aws eks update-kubeconfig --region ${AWS_REGION} --name ${AWS_EKS_CLUSTER_NAME}"
             sh "kubectl apply -f ${EKS_DEPLOYMENT_FILE} -n ${EKS_NAMESPACE}"
-            sh "kubectl set image deployment/${EKS_DEPLOYMENT_NAME} ${RUNNING_CONTAINER_NAME}=${AWS_ECR_IMAGE}:${imageVersion}"
+            sh "kubectl set image deployment/${EKS_DEPLOYMENT_NAME} ${RUNNING_CONTAINER_NAME}=${AWS_ECR_IMAGE}:${IMAGE_VERSION}"
             sh "kubectl rollout status deployment/${EKS_DEPLOYMENT_NAME}"
         }
     }
