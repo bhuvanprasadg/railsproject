@@ -20,7 +20,7 @@ node{
         docker.withRegistry(
             "https://${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com",
             "ecr:${AWS_REGION}:${AWS_JENKINS_CREDENTIALS_ID}") {
-            def dockerImage = docker.build("${AWS_ECR_IMAGE}:v${IMAGE_VERSION}")
+            def dockerImage = docker.build("${AWS_ECR_IMAGE}:${IMAGE_VERSION}")
             dockerImage.push()
         }
     }
