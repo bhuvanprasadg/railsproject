@@ -26,8 +26,9 @@ node{
         }
     }
     stage("Kubernetes Deployment"){
-        withAWS(credentials: "${AWS_JENKINS_CREDENTIALS_ID_EKS}", region: "${AWS_REGION}") {
+        withAWS(credentials: "${AWS_JENKINS_CREDENTIALS_ID}", region: "${AWS_REGION}") {
             sh "aws eks update-kubeconfig --region ${AWS_REGION} --name ${AWS_EKS_CLUSTER_NAME}"
+            sh "aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 088578890509.dkr.ecr.ap-south-1.amazonaws.com"
 //             sh "kubectl apply -f ${EKS_DEPLOYMENT_FILE} -n ${EKS_NAMESPACE}"
             sh "kubectl set image deployment/${EKS_DEPLOYMENT_NAME} ${RUNNING_CONTAINER_NAME}=${AWS_ECR_IMAGE}:${IMAGE_VERSION} -n ${EKS_NAMESPACE}"
             sh "kubectl rollout status deployment/${EKS_DEPLOYMENT_NAME} -n ${EKS_NAMESPACE}"
