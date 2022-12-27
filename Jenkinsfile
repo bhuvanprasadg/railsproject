@@ -4,6 +4,7 @@ node{
     def AWS_ACCOUNT_ID = "088578890509"
     def AWS_REGION = "ap-south-1"
     def AWS_JENKINS_CREDENTIALS_ID = "aws-ecr-credentials"
+    def AWS_JENKINS_CREDENTIALS_ID_EKS = "aws-ecr-eks-credentials"
     def AWS_ECR_IMAGE = "railsapp"
     def AWS_EKS_CLUSTER_NAME = "cluster-eks"
     def EKS_NAMESPACE = "railsapp"
@@ -25,7 +26,7 @@ node{
         }
     }
     stage("Kubernetes Deployment"){
-        withAWS(credentials: "${AWS_JENKINS_CREDENTIALS_ID}", region: "${AWS_REGION}") {
+        withAWS(credentials: "${AWS_JENKINS_CREDENTIALS_ID_EKS}", region: "${AWS_REGION}") {
             sh "aws eks update-kubeconfig --region ${AWS_REGION} --name ${AWS_EKS_CLUSTER_NAME}"
 //             sh "kubectl apply -f ${EKS_DEPLOYMENT_FILE} -n ${EKS_NAMESPACE}"
             sh "kubectl set image deployment/${EKS_DEPLOYMENT_NAME} ${RUNNING_CONTAINER_NAME}=${AWS_ECR_IMAGE}:${IMAGE_VERSION} -n ${EKS_NAMESPACE}"
