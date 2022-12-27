@@ -4,7 +4,6 @@ node{
     def AWS_ACCOUNT_ID = "088578890509"
     def AWS_REGION = "ap-south-1"
     def AWS_JENKINS_CREDENTIALS_ID = "aws-ecr-credentials"
-    def AWS_JENKINS_CREDENTIALS_ID_EKS = "aws-ecr-eks-credentials"
     def AWS_ECR_IMAGE = "railsapp"
     def AWS_EKS_CLUSTER_NAME = "cluster-eks"
     def EKS_NAMESPACE = "railsapp"
