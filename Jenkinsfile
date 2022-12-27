@@ -5,7 +5,7 @@ node{
     def AWS_REGION = "ap-south-1"
     def AWS_JENKINS_CREDENTIALS_ID = "aws-ecr-credentials"
     def AWS_ECR_IMAGE = "railsapp"
-    def AWS_EKS_CLUSTER_NAME = "railsapp"
+    def AWS_EKS_CLUSTER_NAME = "cluster-eks"
     def EKS_NAMESPACE = "railsapp"
     def EKS_DEPLOYMENT_FILE = "deployment.yaml"
     def EKS_DEPLOYMENT_NAME = "railswelcomepage"
