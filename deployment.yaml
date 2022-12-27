@@ -14,8 +14,10 @@ spec:
       labels:
         app: rails
     spec:
+      terminationGracePeriodSeconds: 90
       containers:
       - name: railspagecontainer
         image: 088578890509.dkr.ecr.ap-south-1.amazonaws.com/railsapp:latest
+        imagePullPolicy: "Always"
         ports:
         - containerPort: 3000
