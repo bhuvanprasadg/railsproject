@@ -11,7 +11,7 @@ node{
     def EKS_DEPLOYMENT_NAME = "railswelcomepage"
     def RUNNING_CONTAINER_NAME = "railspagecontainer"
     def BUILD_NUMBER = currentBuild.number
-    def IMAGE_VERSION = "v.${BUILD_NUMBER}"
+    def IMAGE_VERSION = "v${BUILD_NUMBER}"
     
     stage("Code checkout"){
         git branch: "main", url: "${GITHUB_PROJECT_URL}", credentialsId: "${GITHUB_CREDENTIALS}"
