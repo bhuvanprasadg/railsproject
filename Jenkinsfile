@@ -16,7 +16,7 @@ node{
     stage("Code checkout"){
         git branch: "main", url: "${GITHUB_PROJECT_URL}", credentialsId: "${GITHUB_CREDENTIALS}"
     }
-    stage("Build the project to docker image & Push to ECR"){
+    stage("Project build & Push to ECR"){
         docker.withRegistry(
             "https://${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com",
             "ecr:${AWS_REGION}:${AWS_JENKINS_CREDENTIALS_ID}") {
@@ -24,7 +24,7 @@ node{
             dockerImage.push()
         }
     }
-    stage("Kubernetes Deployment"){
+    stage("Deployment to EKS cluster"){
         withAWS(credentials: "${AWS_JENKINS_CREDENTIALS_ID}", region: "${AWS_REGION}") {
             sh "aws eks update-kubeconfig --region ${AWS_REGION} --name ${AWS_EKS_CLUSTER_NAME}"
             sh "aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 088578890509.dkr.ecr.ap-south-1.amazonaws.com"
