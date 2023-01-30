@@ -23,6 +23,8 @@ node{
 //             dockerImage.push()
 //         }
 //     }
+    sh "apt install awscli"
+    sh "aws --version"
     stage("Deployment to EKS cluster"){
         withAWS(credentials: "${AWS_JENKINS_CREDENTIALS_ID}", region: "${AWS_REGION}") {
             sh "aws eks update-kubeconfig --region ${AWS_REGION} --name ${AWS_EKS_CLUSTER_NAME}"
