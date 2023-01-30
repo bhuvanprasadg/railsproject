@@ -23,7 +23,7 @@ node{
 //             dockerImage.push()
 //         }
 //     }
-    sh "apt install awscli"
+    sh "sudo apt install awscli"
     sh "aws --version"
     stage("Deployment to EKS cluster"){
         withAWS(credentials: "${AWS_JENKINS_CREDENTIALS_ID}", region: "${AWS_REGION}") {
