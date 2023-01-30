@@ -2,7 +2,7 @@ node{
     def GITHUB_PROJECT_URL = "https://github.com/bhuvi-12/railsproject.git"
     def AWS_ACCOUNT_ID = "347476671573"
     def AWS_REGION = "us-east-1"
-    def AWS_JENKINS_CREDENTIALS_ID = "aws-credentials"
+    def AWS_JENKINS_CREDENTIALS_ID = "c87d1359-e601-495b-9190-b6d55aa3ee86"
     def AWS_ECR_IMAGE = "uat-bki-api-test"
     def AWS_EKS_CLUSTER_NAME = "uat-bki-eks-cluster"
     def EKS_NAMESPACE = "uat-test"
