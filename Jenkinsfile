@@ -23,6 +23,9 @@ node{
             dockerImage.push()
         }
     }
+    stage("Docker image scan"){
+        sh "trivy --no-progress --exit-code 1 --severity HIGH,CRITICAL ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${AWS_ECR_IMAGE}:${IMAGE_VERSION}"
+    }
     stage("Deployment to EKS cluster"){
         withAWS(credentials: "${AWS_JENKINS_CREDENTIALS_ID}", region: "${AWS_REGION}") {
             sh "aws eks update-kubeconfig --region ${AWS_REGION} --name ${AWS_EKS_CLUSTER_NAME}"
