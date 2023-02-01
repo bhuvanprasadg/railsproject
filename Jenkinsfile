@@ -1,5 +1,6 @@
 node{
     def GITHUB_PROJECT_URL = "https://github.com/bhuvi-12/railsproject.git"
+    def GITHUB_CREDENTIALS = "GITHUB_CREDENTIALS"
     def AWS_ACCOUNT_ID = "347476671573"
     def AWS_REGION = "us-east-1"
     def AWS_JENKINS_CREDENTIALS_ID = "aws-credentials"
@@ -13,7 +14,7 @@ node{
     def IMAGE_VERSION = "v${BUILD_NUMBER}"
     
     stage("Code checkout"){
-        git branch: "main", url: "${GITHUB_PROJECT_URL}"
+        git branch: "main", url: "${GITHUB_PROJECT_URL}", credentialsId: "${GITHUB_CREDENTIALS}"
     }
     stage("Project build & Push to ECR"){
         docker.withRegistry(
