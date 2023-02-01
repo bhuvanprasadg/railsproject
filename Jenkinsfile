@@ -1,6 +1,6 @@
 node{
     def GITHUB_PROJECT_URL = "https://github.com/bhuvi-12/railsproject.git"
-    def GITHUB_CREDENTIALS = "GITHUB_CREDENTIALS"
+    def GITHUB_CREDENTIALS = "repo-credentials"
     def AWS_ACCOUNT_ID = "347476671573"
     def AWS_REGION = "us-east-1"
     def AWS_JENKINS_CREDENTIALS_ID = "aws-credentials"
