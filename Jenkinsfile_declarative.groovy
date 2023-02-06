@@ -1,18 +1,18 @@
 pipeline{
   agent any
   environment{
-    GITHUB_PROJECT_URL = "https://github.com/bhuvi-12/photos-app.git"
-    GITHUB_CREDENTIALS = "repo-credentials"
     GITHUB_BRANCH = "master"
+    GITHUB_PROJECT_URL = "https://github.com/bhuvi-12/railsproject.git"
+    GITHUB_CREDENTIALS = "repo-credentials"
     AWS_ACCOUNT_ID = "347476671573"
     AWS_REGION = "us-east-1"
     AWS_JENKINS_CREDENTIALS_ID = "aws-credentials"
-    AWS_ECR_IMAGE = "uat-bki-fe-test"
+    AWS_ECR_IMAGE = "uat-bki-api-test"
     AWS_EKS_CLUSTER_NAME = "uat-bki-eks-cluster"
     EKS_NAMESPACE = "uat-test"
     EKS_DEPLOYMENT_FILE = "deployment.yaml"
-    EKS_DEPLOYMENT_NAME = "photosapplication-deployment"
-    RUNNING_CONTAINER_NAME = "photos-application"
+    EKS_DEPLOYMENT_NAME = "railswelcomepage"
+    RUNNING_CONTAINER_NAME = "railspagecontainer"
   }
   stages{
     stage('Code checkout'){
