@@ -15,8 +15,26 @@ spec:
         app: rails
     spec:
       containers:
-      - name: railspagecontainer
-        image: 088578890509.dkr.ecr.ap-south-1.amazonaws.com/railsapp:v30
-        imagePullPolicy: "Always"
-        ports:
-        - containerPort: 3000
+        - name: railspagecontainer
+          image: '088578890509.dkr.ecr.ap-south-1.amazonaws.com/railsapp:v30'
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+          resources:
+            requests:
+              memory: 64Mi
+              cpu: 250m
+            limits:
+              memory: 128Mi
+              cpu: 500m
+          readinessProbe:
+            tcpSocket:
+              port: 3000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            tcpSocket:
+              port: 3000
+            initialDelaySeconds: 15
+            periodSeconds: 20
+
