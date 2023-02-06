@@ -1,7 +1,7 @@
 pipeline{
   agent any
   environment{
-    GITHUB_BRANCH = "master"
+    GITHUB_BRANCH = "main"
     GITHUB_PROJECT_URL = "https://github.com/bhuvi-12/railsproject.git"
     GITHUB_CREDENTIALS = "repo-credentials"
     AWS_ACCOUNT_ID = "347476671573"
